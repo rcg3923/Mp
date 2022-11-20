@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SetFragment">
+
+
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="17dp"
+        android:background="#7C7A7A"
+        android:text="공지사항"
+        android:textSize="15dp"
+        android:fontFamily="@font/dalseohealingmedium"
+        />
+
+
+    <TextView
+        android:layout_width="320dp"
+        android:layout_height="88dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="43dp"
+        android:fontFamily="@font/dalseohealingmedium"
+        android:text="*공지사항 내용*" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="143dp"
+        android:text="내 정보확인"
+        android:textSize="15dp"
+        android:background="#7C7A7A"
+        android:fontFamily="@font/dalseohealingmedium"/>
+
+
+
+    <TextView
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="171dp"
+        android:fontFamily="@font/dalseohealingmedium"
+        android:text="이름" />
+
+    <TextView
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="203dp"
+        android:fontFamily="@font/dalseohealingmedium"
+        android:text="전화번호" />
+
+    <TextView
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="246dp"
+        android:fontFamily="@font/dalseohealingmedium"
+        android:text="포인트현황" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="169dp"
+        android:fontFamily="@font/dalseohealingmedium"
+        android:text="자신의 이름" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="106dp"
+        android:layout_marginTop="201dp"
+        android:text="자신의 전화 번호" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="245dp"
+        android:fontFamily="@font/dalseohealingmedium"
+        android:text="자신의 포인트 현황" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="311dp"
+        android:layout_marginEnd="0dp"
+        android:background="#7C7A7A"
+        android:fontFamily="@font/dalseohealingmedium"
+        android:text="추가내용 1"
+        android:textSize="15dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="386dp"
+        android:layout_marginEnd="2dp"
+        android:background="#7C7A7A"
+        android:fontFamily="@font/dalseohealingmedium"
+        android:text="추가내용 2"
+        android:textSize="15dp" />
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
+
+        <ImageButton
+            android:id="@+id/button_main"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:background="@color/white"
+            android:src="@drawable/icon_btn_main" />
+
+        <ImageButton
+            android:id="@+id/button_chat"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:background="@color/white"
+            android:src="@drawable/icon_btn_chat"
+            />
+        <ImageButton
+            android:id="@+id/button_calendar"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:background="@color/white"
+            android:src="@drawable/icon_btn_cal"
+            />
+
+        <ImageButton
+            android:id="@+id/button_set"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:background="@color/white"
+            android:src="@drawable/icon_btn_set2"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

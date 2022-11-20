@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainFragment">
+
+
+
+    //유저 레이아웃
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="#FFFFFF"
+        >
+
+        <ImageView
+            android:id="@+id/iv_user"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:src="@drawable/icon_user"
+             />
+
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="4dp"
+            android:text="이름"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/tv_useremail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="26dp"
+            android:layout_marginTop="6dp"
+            android:text="이메일"
+            android:textColor="#8A252525"/>
+
+    </LinearLayout>
+
+
+
+    //하단바 레이아웃
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
+
+        <ImageButton
+            android:id="@+id/button_main"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:background="@color/white"
+            android:src="@drawable/icon_btn_main2" />
+
+        <ImageButton
+            android:id="@+id/button_chat"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:background="@color/white"
+            android:src="@drawable/icon_btn_chat"
+             />
+        <ImageButton
+            android:id="@+id/button_calendar"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:background="@color/white"
+            android:src="@drawable/icon_btn_cal"
+             />
+
+        <ImageButton
+            android:id="@+id/button_set"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:background="@color/white"
+            android:src="@drawable/icon_btn_set"
+             />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
