@@ -74,6 +74,35 @@ public class CalendarFragment extends Fragment {
             }
         });
 
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                diaryText.setVisibility(View.VISIBLE);
+                save_Btn.setVisibility(View.VISIBLE);
+                contextEditText.setVisibility(View.VISIBLE);
+                contextView.setVisibility(View.INVISIBLE);
+                change_Btn.setVisibility(View.INVISIBLE);
+                del_Btn.setVisibility(View.INVISIBLE);
+                diaryText.setText(String.format("%d / %d / %d",year,month+1,dayOfMonth));
+                contextEditText.setText("");
+                checkDay(year,month,dayOfMonth);
+            }
+        });
+        save_Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveDiary(fname);
+                str=contextEditText.getText().toString();
+                contextView.setText(str);
+                save_Btn.setVisibility(View.INVISIBLE);
+                change_Btn.setVisibility(View.VISIBLE);
+                del_Btn.setVisibility(View.VISIBLE);
+                contextEditText.setVisibility(View.INVISIBLE);
+                contextView.setVisibility(View.VISIBLE);
+
+            }
+        });
+
         return rootView;
     }
 
