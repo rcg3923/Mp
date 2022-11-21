@@ -16,9 +16,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobilepro.Account.UserAccount;
 import com.example.mobilepro.MainActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -27,6 +31,9 @@ import java.util.List;
 // 친구창 프래그먼트
 public class MainFragment extends Fragment {
 
+    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_main, container, false);
@@ -34,7 +41,25 @@ public class MainFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
         recyclerView.setAdapter(new PeopleFragmentRecyclerViewAdapter());
 
+        TextView curr_name = rootView.findViewById(R.id.tv_username);
+        TextView curr_email = rootView.findViewById(R.id.tv_useremail);
 
+        // 내 프로필에 해당하는 부분의 정보 채우기.
+        databaseReference.child("UserAccount").child(firebaseUser.getUid()).child("name").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String value = dataSnapshot.getValue(String.class);
+                curr_name.setText(value);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        curr_email.setText(firebaseUser.getEmail());
+
+        // 밑에 있는 버튼
         ImageButton btn_chat = rootView.findViewById(R.id.button_chat);
         ImageButton btn_calendar = rootView.findViewById(R.id.button_calendar);
         ImageButton btn_set = rootView.findViewById(R.id.button_set);
@@ -77,7 +102,10 @@ public class MainFragment extends Fragment {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        userAccounts.add(snapshot.getValue(UserAccount.class));
+                        // 친구창엔 나를 제외한 나머지 사람들이 모두 들어간다.
+                        if(!snapshot.getValue(UserAccount.class).getEmailId().equals(firebaseUser.getEmail())) {
+                            userAccounts.add(snapshot.getValue(UserAccount.class));
+                        }
                     }
                     notifyDataSetChanged();
                 }
