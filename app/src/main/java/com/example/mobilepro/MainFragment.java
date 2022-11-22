@@ -1,5 +1,6 @@
 package com.example.mobilepro;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -129,6 +130,16 @@ public class MainFragment extends Fragment {
         public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
             ((CustomViewHolder)holder).nameView.setText(userAccounts.get(position).getName());
             ((CustomViewHolder)holder).emailView.setText(userAccounts.get(position).getEmailId());
+            int n = position; // 임시방편(친구 추가 기능과 파이어베이스에 userfriends가 추가되면 변경 예정)
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), MessageActivity.class);
+                    intent.putExtra("destinationUid", userAccounts.get(n).getIdToken()); // destinationUid는 상대방 uid 말하는 거임.
+                    startActivity(intent);
+                }
+            });
         }
 
         @Override

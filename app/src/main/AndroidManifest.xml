@@ -14,6 +14,7 @@
         android:theme="@style/Theme.MobilePro"
         tools:targetApi="31">
         <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MessageActivity"></activity>
 
         <activity android:name=".Account.RegisterActivity"
             android:exported="true">
