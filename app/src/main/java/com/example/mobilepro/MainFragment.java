@@ -86,7 +86,7 @@ public class MainFragment extends Fragment {
 
                                 // 친구의 목록에 나를 추가
                                 databaseReference.child("UserFriends").child(snapshot.getValue(UserAccount.class).getIdToken()).child(firebaseUser.getUid()).setValue(true);
-                                //databaseReference.child("UserFriends").child(snapshot.getValue(UserAccount.class).getIdToken()).setValue(firebaseUser.getUid());
+
                                 Toast.makeText(getActivity().getApplication(), "친구추가 성공!", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -144,15 +144,28 @@ public class MainFragment extends Fragment {
         List<UserAccount> userAccounts;  // 우리 코드엔 useraccount로 적용하면 될 듯
         public PeopleFragmentRecyclerViewAdapter() {
             userAccounts = new ArrayList<>();
-            DatabaseReference tmp = FirebaseDatabase.getInstance().getReference().child("UserAccount").child(firebaseUser.getUid());
             FirebaseDatabase.getInstance().getReference().child("UserAccount").addValueEventListener(new ValueEventListener() {
+                // hasChild() 함수?
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        if (databaseReference.child("UserFriends").child(firebaseUser.getUid()).child(snapshot.getValue(UserAccount.class).getIdToken()).equals(snapshot.getValue(UserAccount.class).getIdToken())) {
-                            userAccounts.add(snapshot.getValue(UserAccount.class));
+                    for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
 
-                        }
+                        FirebaseDatabase.getInstance().getReference().child("UserFriends").child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot2) {
+                                if (snapshot2.hasChild(snapshot1.getKey())) {
+                                    userAccounts.add(snapshot1.getValue(UserAccount.class));
+                                }
+
+                                notifyDataSetChanged();
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
                         notifyDataSetChanged();
                     }
                 }
