@@ -78,17 +78,28 @@ public class MainFragment extends Fragment {
                 FirebaseDatabase.getInstance().getReference().child("UserAccount").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String check = "";
                         for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                             // 서로 친추가 되어야 한다. (작동은 되는데 데이터베이스 부분 수정해야함.. 일대다 로 만들어야함.)
-                            if(snapshot.getValue(UserAccount.class).getEmailId().equals(new_friend_email)) {
+                            if(snapshot.getValue(UserAccount.class).getEmailId().equals(new_friend_email) && !new_friend_email.equals(firebaseUser.getEmail())) {
+                                check = new_friend_email;
+
                                 // 내 친구 목록에 추가
                                 databaseReference.child("UserFriends").child(firebaseUser.getUid()).child(snapshot.getValue(UserAccount.class).getIdToken()).setValue(true);
 
                                 // 친구의 목록에 나를 추가
                                 databaseReference.child("UserFriends").child(snapshot.getValue(UserAccount.class).getIdToken()).child(firebaseUser.getUid()).setValue(true);
 
+                                // 친구창의 리사이클러뷰 다시 출력해야함.
+                                recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
+                                recyclerView.setAdapter(new PeopleFragmentRecyclerViewAdapter());
+
                                 Toast.makeText(getActivity().getApplication(), "친구추가 성공!", Toast.LENGTH_SHORT).show();
                             }
+                        }
+
+                        if(check.equals("")) {
+                            Toast.makeText(getActivity().getApplication(), "친구추가 실패!", Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -153,7 +164,7 @@ public class MainFragment extends Fragment {
                         FirebaseDatabase.getInstance().getReference().child("UserFriends").child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot2) {
-                                if (snapshot2.hasChild(snapshot1.getKey())) {
+                                if (snapshot2.hasChild(snapshot1.getKey()) && !snapshot1.getKey().equals(firebaseUser.getUid())) {
                                     userAccounts.add(snapshot1.getValue(UserAccount.class));
                                 }
 
