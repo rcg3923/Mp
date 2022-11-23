@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainFragment">
+    
 
+    
     <!-- 본인 프로필 -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,6 +69,30 @@
             android:layout_height="wrap_content"
             android:text="친구 프로필" />
 
+    </LinearLayout>
+
+    <!-- 친구 추가 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_toLeftOf="@+id/addFriend_button"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/addFriend_editText"
+            android:hint="이메일을 적어주세요."
+            android:layout_width="310sp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/addFriend_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="친구 추가"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"/>
     </LinearLayout>
 
 

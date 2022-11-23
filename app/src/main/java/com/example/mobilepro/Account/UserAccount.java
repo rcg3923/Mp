@@ -1,5 +1,9 @@
 package com.example.mobilepro.Account;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 /*
 
     사용자 계정 정보 모델 클래스
@@ -13,9 +17,10 @@ public class UserAccount
     private String phoneNumber; // 폰번호
     private String name; // 이름
 
+    public ArrayList<String> friends = new ArrayList<>();
+
     // realtimebase 사용할때 꼭 해줘야함
     public UserAccount() { }
-
 
     public String getEmailId() { return emailId; }
     public void setEmailId(String emailId) { this.emailId = emailId; }

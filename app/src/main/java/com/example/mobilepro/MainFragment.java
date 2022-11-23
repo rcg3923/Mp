@@ -6,15 +6,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mobilepro.Account.RegisterActivity;
 import com.example.mobilepro.Account.UserAccount;
 import com.example.mobilepro.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,10 +45,10 @@ public class MainFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
         recyclerView.setAdapter(new PeopleFragmentRecyclerViewAdapter());
 
+        // 내 프로필에 해당하는 부분의 정보 채우기.
         TextView curr_name = rootView.findViewById(R.id.tv_username);
         TextView curr_email = rootView.findViewById(R.id.tv_useremail);
 
-        // 내 프로필에 해당하는 부분의 정보 채우기.
         databaseReference.child("UserAccount").child(firebaseUser.getUid()).child("name").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -59,6 +62,39 @@ public class MainFragment extends Fragment {
             }
         });
         curr_email.setText(firebaseUser.getEmail());
+
+        // "친구 추가 = 채팅방 생성"이라고 볼 수 있음.
+        // 친구 추가 시, 유일키인 email로 검색하도록 함.
+        EditText addFriend_editText = rootView.findViewById(R.id.addFriend_editText);
+        Button addFriend_button = rootView.findViewById(R.id.addFriend_button);
+
+        String new_friend_email = addFriend_editText.getText().toString();
+        addFriend_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // new_friend의 uid를 가져와서 UserFriend.본인uid 밑에 넣어야 한다.
+                databaseReference.child("UserAccount").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            // 서로 친추가 되어야 한다. (왜 작동 안되지...)
+                            if(snapshot.getValue(UserAccount.class).getEmailId().equals(new_friend_email)) {
+                                databaseReference.child("UserFriends").child(firebaseUser.getUid()).setValue(snapshot.getValue(UserAccount.class).getIdToken());
+                                databaseReference.child("UserFriends").child(snapshot.getValue(UserAccount.class).getIdToken()).setValue(firebaseUser.getUid());
+                                Toast.makeText(getActivity().getApplication(), "친구추가 성공!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+            }
+        });
+
 
         // 밑에 있는 버튼
         ImageButton btn_chat = rootView.findViewById(R.id.button_chat);
@@ -99,11 +135,11 @@ public class MainFragment extends Fragment {
         List<UserAccount> userAccounts;  // 우리 코드엔 useraccount로 적용하면 될 듯
         public PeopleFragmentRecyclerViewAdapter() {
             userAccounts = new ArrayList<>();
-            FirebaseDatabase.getInstance().getReference().child("UserAccount").addValueEventListener(new ValueEventListener() {
+            FirebaseDatabase.getInstance().getReference().child("UserFriends").child(firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        // 친구창엔 나를 제외한 나머지 사람들이 모두 들어간다.
+                        // 친구창엔 (나를 제외하고) 내 친구만 추가한다.
                         if(!snapshot.getValue(UserAccount.class).getEmailId().equals(firebaseUser.getEmail())) {
                             userAccounts.add(snapshot.getValue(UserAccount.class));
                         }

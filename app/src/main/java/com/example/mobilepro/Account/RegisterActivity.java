@@ -78,6 +78,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 account.setPhoneNumber(PhoneTxt);
                                 account.setName(NameTxt);
                                 databaseReference.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
+                                databaseReference.child("UserFriends").child(firebaseUser.getUid()).setValue("");  // userfriends 파이어베이스
 
                                 Toast.makeText(RegisterActivity.this, "회원가입 성공", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
