@@ -28,6 +28,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.auth.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +70,7 @@ public class MainFragment extends Fragment {
         Button addFriend_button = rootView.findViewById(R.id.addFriend_button);
 
         String new_friend_email = addFriend_editText.getText().toString();
+
         addFriend_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,10 +79,13 @@ public class MainFragment extends Fragment {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            Toast.makeText(getActivity().getApplication(), new_friend_email, Toast.LENGTH_SHORT).show();
                             // 서로 친추가 되어야 한다. (왜 작동 안되지...)
                             if(snapshot.getValue(UserAccount.class).getEmailId().equals(new_friend_email)) {
-                                databaseReference.child("UserFriends").child(firebaseUser.getUid()).setValue(snapshot.getValue(UserAccount.class).getIdToken());
-                                databaseReference.child("UserFriends").child(snapshot.getValue(UserAccount.class).getIdToken()).setValue(firebaseUser.getUid());
+                                //UserFriends userFriends = new UserFriends();
+                                //userFriends.setEmailId(snapshot.getValue(UserAccount.class).get);
+                                databaseReference.child("UserFriends").child(firebaseUser.getUid()).child(snapshot.getValue(UserAccount.class).getIdToken()).setValue(true);
+                                //databaseReference.child("UserFriends").child(snapshot.getValue(UserAccount.class).getIdToken()).setValue(firebaseUser.getUid());
                                 Toast.makeText(getActivity().getApplication(), "친구추가 성공!", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -135,16 +140,16 @@ public class MainFragment extends Fragment {
         List<UserAccount> userAccounts;  // 우리 코드엔 useraccount로 적용하면 될 듯
         public PeopleFragmentRecyclerViewAdapter() {
             userAccounts = new ArrayList<>();
+            DatabaseReference tmp = FirebaseDatabase.getInstance().getReference().child("UserAccount").child(firebaseUser.getUid());
             FirebaseDatabase.getInstance().getReference().child("UserFriends").child(firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        // 친구창엔 (나를 제외하고) 내 친구만 추가한다.
-                        if(!snapshot.getValue(UserAccount.class).getEmailId().equals(firebaseUser.getEmail())) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        if (databaseReference.child("UserFriends").child(firebaseUser.getUid()).child(snapshot.getValue(UserAccount.class).getIdToken()).equals(snapshot.getValue(UserAccount.class).getIdToken())) {
                             userAccounts.add(snapshot.getValue(UserAccount.class));
                         }
+                        notifyDataSetChanged();
                     }
-                    notifyDataSetChanged();
                 }
 
                 @Override
