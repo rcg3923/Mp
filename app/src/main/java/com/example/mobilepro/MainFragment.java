@@ -69,26 +69,24 @@ public class MainFragment extends Fragment {
         EditText addFriend_editText = rootView.findViewById(R.id.addFriend_editText);
         Button addFriend_button = rootView.findViewById(R.id.addFriend_button);
 
-        String new_friend_email = addFriend_editText.getText().toString();
-
         addFriend_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String new_friend_email = addFriend_editText.getText().toString();
+
                 // new_friend의 uid를 가져와서 UserFriend.본인uid 밑에 넣어야 한다.
-                databaseReference.child("UserAccount").addValueEventListener(new ValueEventListener() {
+                FirebaseDatabase.getInstance().getReference().child("UserAccount").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            Toast.makeText(getActivity().getApplication(), new_friend_email, Toast.LENGTH_SHORT).show();
-                            // 서로 친추가 되어야 한다. (왜 작동 안되지...)
+                            // 서로 친추가 되어야 한다. (작동은 되는데 데이터베이스 부분 수정해야함.. 일대다 로 만들어야함.)
                             if(snapshot.getValue(UserAccount.class).getEmailId().equals(new_friend_email)) {
-                                //UserFriends userFriends = new UserFriends();
-                                //userFriends.setEmailId(snapshot.getValue(UserAccount.class).get);
                                 databaseReference.child("UserFriends").child(firebaseUser.getUid()).child(snapshot.getValue(UserAccount.class).getIdToken()).setValue(true);
-                                //databaseReference.child("UserFriends").child(snapshot.getValue(UserAccount.class).getIdToken()).setValue(firebaseUser.getUid());
+                                databaseReference.child("UserFriends").child(snapshot.getValue(UserAccount.class).getIdToken()).setValue(firebaseUser.getUid());
                                 Toast.makeText(getActivity().getApplication(), "친구추가 성공!", Toast.LENGTH_SHORT).show();
                             }
                         }
+
                     }
 
                     @Override
@@ -96,6 +94,8 @@ public class MainFragment extends Fragment {
 
                     }
                 });
+
+
 
             }
         });
@@ -141,12 +141,13 @@ public class MainFragment extends Fragment {
         public PeopleFragmentRecyclerViewAdapter() {
             userAccounts = new ArrayList<>();
             DatabaseReference tmp = FirebaseDatabase.getInstance().getReference().child("UserAccount").child(firebaseUser.getUid());
-            FirebaseDatabase.getInstance().getReference().child("UserFriends").child(firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
+            FirebaseDatabase.getInstance().getReference().child("UserAccount").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         if (databaseReference.child("UserFriends").child(firebaseUser.getUid()).child(snapshot.getValue(UserAccount.class).getIdToken()).equals(snapshot.getValue(UserAccount.class).getIdToken())) {
                             userAccounts.add(snapshot.getValue(UserAccount.class));
+
                         }
                         notifyDataSetChanged();
                     }
