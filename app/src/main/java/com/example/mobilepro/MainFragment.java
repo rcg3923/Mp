@@ -81,8 +81,12 @@ public class MainFragment extends Fragment {
                         for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                             // 서로 친추가 되어야 한다. (작동은 되는데 데이터베이스 부분 수정해야함.. 일대다 로 만들어야함.)
                             if(snapshot.getValue(UserAccount.class).getEmailId().equals(new_friend_email)) {
+                                // 내 친구 목록에 추가
                                 databaseReference.child("UserFriends").child(firebaseUser.getUid()).child(snapshot.getValue(UserAccount.class).getIdToken()).setValue(true);
-                                databaseReference.child("UserFriends").child(snapshot.getValue(UserAccount.class).getIdToken()).setValue(firebaseUser.getUid());
+
+                                // 친구의 목록에 나를 추가
+                                databaseReference.child("UserFriends").child(snapshot.getValue(UserAccount.class).getIdToken()).child(firebaseUser.getUid()).setValue(true);
+                                //databaseReference.child("UserFriends").child(snapshot.getValue(UserAccount.class).getIdToken()).setValue(firebaseUser.getUid());
                                 Toast.makeText(getActivity().getApplication(), "친구추가 성공!", Toast.LENGTH_SHORT).show();
                             }
                         }
