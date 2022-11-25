@@ -19,7 +19,6 @@ public class SetFragment extends Fragment {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_set, container, false);
 
         ImageButton btn_main = rootView.findViewById(R.id.button_main);
-        ImageButton btn_chat = rootView.findViewById(R.id.button_chat);
         ImageButton btn_calendar = rootView.findViewById(R.id.button_calendar);
         ImageButton btn_set = rootView.findViewById(R.id.button_set);
 
@@ -31,18 +30,12 @@ public class SetFragment extends Fragment {
                 activity.onFragmentChanged(0);
             }
         });
-        btn_chat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MainActivity activity = (MainActivity) getActivity();
-                activity.onFragmentChanged(1);
-            }
-        });
+
         btn_calendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MainActivity activity = (MainActivity) getActivity();
-                activity.onFragmentChanged(2);
+                activity.onFragmentChanged(1);
             }
         });
 

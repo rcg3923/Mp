@@ -48,7 +48,6 @@ public class CalendarFragment extends Fragment {
         contextEditText = rootView.findViewById(R.id.contextEditText);
 
         ImageButton btn_main = rootView.findViewById(R.id.button_main);
-        ImageButton btn_chat = rootView.findViewById(R.id.button_chat);
         ImageButton btn_calendar = rootView.findViewById(R.id.button_calendar);
         ImageButton btn_set = rootView.findViewById(R.id.button_set);
 
@@ -59,18 +58,11 @@ public class CalendarFragment extends Fragment {
                 activity.onFragmentChanged(0);
             }
         });
-        btn_chat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MainActivity activity = (MainActivity) getActivity();
-                activity.onFragmentChanged(1);
-            }
-        });
         btn_set.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MainActivity activity = (MainActivity) getActivity();
-                activity.onFragmentChanged(3);
+                activity.onFragmentChanged(2);
             }
         });
 
