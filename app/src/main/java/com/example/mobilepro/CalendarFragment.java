@@ -48,7 +48,7 @@ public class CalendarFragment extends Fragment {
         contextEditText = rootView.findViewById(R.id.contextEditText);
 
         ImageButton btn_main = rootView.findViewById(R.id.button_main);
-        ImageButton btn_calendar = rootView.findViewById(R.id.button_calendar);
+        //ImageButton btn_calendar = rootView.findViewById(R.id.button_calendar);
         ImageButton btn_set = rootView.findViewById(R.id.button_set);
 
         btn_main.setOnClickListener(new View.OnClickListener() {
