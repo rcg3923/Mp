@@ -19,7 +19,6 @@ public class ChatFragment extends Fragment {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_chat, container, false);
 
         ImageButton btn_main = rootView.findViewById(R.id.button_main);
-        ImageButton btn_chat = rootView.findViewById(R.id.button_chat);
         ImageButton btn_calendar = rootView.findViewById(R.id.button_calendar);
         ImageButton btn_set = rootView.findViewById(R.id.button_set);
 

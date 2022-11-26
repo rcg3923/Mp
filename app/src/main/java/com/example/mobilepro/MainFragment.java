@@ -117,18 +117,9 @@ public class MainFragment extends Fragment {
 
 
         // 밑에 있는 버튼
-        ImageButton btn_chat = rootView.findViewById(R.id.button_chat);
         ImageButton btn_calendar = rootView.findViewById(R.id.button_calendar);
         ImageButton btn_set = rootView.findViewById(R.id.button_set);
 
-
-        btn_chat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MainActivity activity = (MainActivity) getActivity();
-                activity.onFragmentChanged(1);
-            }
-        });
         btn_calendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
