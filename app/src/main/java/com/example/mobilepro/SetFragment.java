@@ -35,7 +35,7 @@ public class SetFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 MainActivity activity = (MainActivity) getActivity();
-                activity.onFragmentChanged(2);
+                activity.onFragmentChanged(1);
             }
         });
 

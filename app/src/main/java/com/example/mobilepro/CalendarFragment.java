@@ -58,12 +58,11 @@ public class CalendarFragment extends Fragment {
                 activity.onFragmentChanged(0);
             }
         });
-
         btn_set.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MainActivity activity = (MainActivity) getActivity();
-                activity.onFragmentChanged(3);
+                activity.onFragmentChanged(2);
             }
         });
 
