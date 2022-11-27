@@ -1,10 +1,10 @@
 package com.example.mobilepro;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -22,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class SetFragment extends Fragment {
+    private ImageButton button;
 
     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -50,22 +51,11 @@ public class SetFragment extends Fragment {
 
         user_email.setText(firebaseUser.getEmail());
 
-        databaseReference.child("UserPoint").child(firebaseUser.getUid()).child("point").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                int value = dataSnapshot.getValue(int.class);
-                curr_point.setText(value + "포인트");
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        
         // 하단 메뉴바 기능
         ImageButton btn_main = rootView.findViewById(R.id.button_main);
         ImageButton btn_calendar = rootView.findViewById(R.id.button_calendar);
+        button = rootView.findViewById(R.id.img_button);
         //ImageButton btn_set = rootView.findViewById(R.id.button_set);
 
 
@@ -76,18 +66,23 @@ public class SetFragment extends Fragment {
                 activity.onFragmentChanged(0);
             }
         });
-
         btn_calendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MainActivity activity = (MainActivity) getActivity();
-                activity.onFragmentChanged(1);
+                activity.onFragmentChanged(2);
             }
         });
-
-
-
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), EmjActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return rootView;
     }
 }
+
+
