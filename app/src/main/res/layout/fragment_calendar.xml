@@ -137,67 +137,79 @@
 
     <!-- 하단바 -->
     <LinearLayout
-        android:layout_width="330sp"
-        android:layout_height="50sp"
-        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="51sp"
         android:layout_alignParentBottom="true"
-        android:background="@color/white"
-        android:layout_centerHorizontal="true"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-
-        <!-- 하단바 버튼1 -->
         <LinearLayout
-            android:layout_width="110sp"
-            android:layout_height="50sp"
-            android:gravity="center">
+            android:background="@android:color/background_dark"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
 
-            <ImageButton
-                android:id="@+id/button_main"
-                android:layout_width="50sp"
-                android:layout_height="40sp"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:background="@color/white"
-                android:src="@drawable/icon_btn_main" />
-
-        </LinearLayout>
-
-
-        <!-- 하단바 버튼2 -->
         <LinearLayout
-            android:layout_width="110sp"
+            android:layout_width="330sp"
             android:layout_height="50sp"
-            android:gravity="center">
-
-            <ImageButton
-                android:id="@+id/button_calendar"
-                android:layout_width="35sp"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:background="@color/white"
-                android:src="@drawable/icon_btn_cal2"
-                />
-
-        </LinearLayout>
+            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
 
 
-        <!-- 하단바 버튼3 -->
-        <LinearLayout
-            android:layout_width="110sp"
-            android:layout_height="50sp"
-            android:gravity="center">
 
-            <ImageButton
-                android:id="@+id/button_set"
-                android:layout_width="35sp"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:background="@color/white"
-                android:src="@drawable/icon_btn_set"
-                />
+            <!-- 하단바 버튼1 -->
+            <LinearLayout
+                android:layout_width="110sp"
+                android:layout_height="50sp"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/button_main"
+                    android:layout_width="50sp"
+                    android:layout_height="40sp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:background="@color/white"
+                    android:src="@drawable/icon_btn_main" />
+
+            </LinearLayout>
+
+
+            <!-- 하단바 버튼2 -->
+            <LinearLayout
+                android:layout_width="110sp"
+                android:layout_height="50sp"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/button_calendar"
+                    android:layout_width="35sp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:background="@color/white"
+                    android:src="@drawable/icon_btn_cal2"
+                    />
+
+            </LinearLayout>
+
+
+            <!-- 하단바 버튼3 -->
+            <LinearLayout
+                android:layout_width="110sp"
+                android:layout_height="50sp"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/button_set"
+                    android:layout_width="35sp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:background="@color/white"
+                    android:src="@drawable/icon_btn_set"
+                    />
+
+            </LinearLayout>
 
         </LinearLayout>
 
