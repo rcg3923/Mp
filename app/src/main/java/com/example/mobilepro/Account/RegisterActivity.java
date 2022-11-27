@@ -77,7 +77,8 @@ public class RegisterActivity extends AppCompatActivity {
                                 account.setPassword(PassWordTxt);
                                 account.setPhoneNumber(PhoneTxt);
                                 account.setName(NameTxt);
-                                account.setPoint(Point);
+
+//                                account.setPoint(Point);
                                 databaseReference.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
                                 databaseReference.child("UserPoint").child(firebaseUser.getUid()).child("point").setValue(0);
 

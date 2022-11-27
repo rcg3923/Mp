@@ -39,7 +39,7 @@ public class UserAccount
 
 
     // Point 부분 추가
-    public int getPoint() { return Point; }
-    public void setPoint(int point) { Point = point; }
+//    public int getPoint() { return Point; }
+//    public void setPoint(int point) { Point = point; }
 
 }
