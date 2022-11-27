@@ -1,5 +1,6 @@
 package com.example.mobilepro;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Layout;
 import android.view.LayoutInflater;
@@ -69,8 +70,8 @@ public class SetFragment extends Fragment {
         background_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity activity = (MainActivity) getActivity();
-                activity.onFragmentChanged(3);
+                Intent intent = new Intent(view.getContext(), BackgroundChange.class);
+                startActivity(intent);
             }
         });
         

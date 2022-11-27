@@ -118,6 +118,8 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 >
+
+
                 <ImageButton
                     android:layout_width="30sp"
                     android:layout_height="30sp"
@@ -133,6 +135,7 @@
                     android:text="채팅방 화면 설정"
                     android:textSize="11sp"
                     android:textStyle="bold"/>
+
             </LinearLayout>
 
             <!-- 상단 버튼3 -->

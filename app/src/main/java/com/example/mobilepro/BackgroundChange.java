@@ -6,31 +6,34 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 
 
-public class BackgroundChange extends Fragment {
+public class BackgroundChange extends AppCompatActivity {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_set_background, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_set_background);
 
-        TextView colorLightBlue = rootView.findViewById(R.id.colorLightBlue);
-        TextView colorWhite = rootView.findViewById(R.id.colorWhite);
-        TextView colorBlack = rootView.findViewById(R.id.colorBlack);
-        TextView colorMint = rootView.findViewById(R.id.colorMint);
-        TextView colorLightYellow = rootView.findViewById(R.id.colorLightYellow);
-        TextView colorLightPurple = rootView.findViewById(R.id.colorLightPurple);
-        TextView colorLightRed = rootView.findViewById(R.id.colorLightRed);
-        TextView colorLightGreen = rootView.findViewById(R.id.colorLightGreen);
+        TextView colorLightBlue = findViewById(R.id.colorLightBlue);
+        TextView colorWhite = findViewById(R.id.colorWhite);
+        TextView colorBlack = findViewById(R.id.colorBlack);
+        TextView colorMint = findViewById(R.id.colorMint);
+        TextView colorLightYellow = findViewById(R.id.colorLightYellow);
+        TextView colorLightPurple = findViewById(R.id.colorLightPurple);
+        TextView colorLightRed = findViewById(R.id.colorLightRed);
+        TextView colorLightGreen = findViewById(R.id.colorLightGreen);
 
+        /*
         colorLightBlue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // MessageActivity.changeBackground(colorLightBlue.getBackground());
             }
         });
+         */
 
-        return rootView;
+
     }
 }
