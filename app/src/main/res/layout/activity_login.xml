@@ -167,12 +167,14 @@
 
             <com.facebook.login.widget.DeviceLoginButton
                 android:id="@+id/Facebook_LoginConroller"
-                android:layout_width="200dp"
+                android:layout_width="190dp"
+                android:layout_marginLeft="10dp"
                 android:layout_height="40dp" />
 
             <com.google.android.gms.common.SignInButton
+                android:layout_marginLeft="10dp"
                 android:id="@+id/Google_LoginController"
-                android:layout_width="200dp"
+                android:layout_width="190dp"
                 android:layout_height="40dp" />
 
         </LinearLayout>
