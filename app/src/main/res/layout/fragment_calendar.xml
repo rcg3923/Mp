@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,7 +8,6 @@
     tools:context=".CalendarFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,11 +21,11 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:gravity="center"
-            android:text="캘린더"
+            android:text="Calender"
+            android:fontFamily="@font/pacifico_regular"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#0081cc"
-            android:textSize="24sp"
-            android:textStyle="bold"
+            android:textSize="35sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -177,7 +177,7 @@
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
                 android:background="@color/white"
-                android:src="@drawable/icon_btn_cal"
+                android:src="@drawable/icon_btn_cal2"
                 />
 
         </LinearLayout>
@@ -196,7 +196,7 @@
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
                 android:background="@color/white"
-                android:src="@drawable/icon_btn_set2"
+                android:src="@drawable/icon_btn_set"
                 />
 
         </LinearLayout>

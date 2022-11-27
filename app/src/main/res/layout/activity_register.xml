@@ -194,7 +194,7 @@
                 android:fontFamily="@font/poppins_regular"
                 android:hint="PhoneNumber"
                 android:inputType="text"
-                android:maxLength="10"
+                android:maxLength="12"
                 android:maxLines="1"
                 android:paddingLeft="17dp"
                 android:paddingTop="15dp"

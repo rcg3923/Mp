@@ -40,7 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText CheckPassWord = findViewById(R.id.Password_Check);
 
         final TextView RegisterBtn = findViewById(R.id.Register_Controller);
-
+        final int Point = 0;
         RegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,7 +77,10 @@ public class RegisterActivity extends AppCompatActivity {
                                 account.setPassword(PassWordTxt);
                                 account.setPhoneNumber(PhoneTxt);
                                 account.setName(NameTxt);
+
+//                                account.setPoint(Point);
                                 databaseReference.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
+                                databaseReference.child("UserPoint").child(firebaseUser.getUid()).child("point").setValue(0);
 
                                 Toast.makeText(RegisterActivity.this, "회원가입 성공", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);

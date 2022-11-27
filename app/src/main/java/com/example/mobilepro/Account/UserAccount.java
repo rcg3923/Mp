@@ -16,7 +16,7 @@ public class UserAccount
     private String password; // 비밀번호
     private String phoneNumber; // 폰번호
     private String name; // 이름
-
+    private int Point; // Point
     public ArrayList<String> friends = new ArrayList<>();
 
     // realtimebase 사용할때 꼭 해줘야함
@@ -37,5 +37,9 @@ public class UserAccount
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
+
+    // Point 부분 추가
+//    public int getPoint() { return Point; }
+//    public void setPoint(int point) { Point = point; }
 
 }
