@@ -1,6 +1,7 @@
 package com.example.mobilepro;
 
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -30,6 +31,7 @@ import java.util.List;
 
 public class MessageActivity extends AppCompatActivity {
 
+    public static String color = "#FFFFFF";
     private String destinationUid;  // 채팅을 받는 당사자의 uid
     private Button button;  // 채팅 전송 버튼
     private EditText editText;  // 채팅 입력되는 editText
@@ -50,13 +52,14 @@ public class MessageActivity extends AppCompatActivity {
         editText = (EditText) findViewById(R.id.messageActivity_editText);
 
         recyclerView = (RecyclerView) findViewById(R.id.messageActivity_recyclerview);
+        recyclerView.setBackgroundColor(Color.parseColor(color));
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ChatModel chatmodel = new ChatModel();
                 chatmodel.users.put(uid, true);
                 chatmodel.users.put(destinationUid, true);
-
 
                 if(chatRoomUid == null) {
                     button.setEnabled(false);
@@ -84,14 +87,6 @@ public class MessageActivity extends AppCompatActivity {
         checkChatRoom();
 
     }
-
-    /* 채팅방 배경 색상 변경 */
-    public void changeBackground(String color)
-    {
-        View messageActivity_recyclerview = findViewById(R.id.messageActivity_recyclerview);
-        messageActivity_recyclerview.setBackgroundColor(Color.parseColor(color));
-    }
-
 
     // 채팅룸 중복체크 함수
     void checkChatRoom() {
