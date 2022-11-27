@@ -69,7 +69,6 @@ public class LoginActivity extends AppCompatActivity {
                 // Register페이지로 이동
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
     }
