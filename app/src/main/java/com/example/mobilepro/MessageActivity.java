@@ -1,5 +1,6 @@
 package com.example.mobilepro;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -82,6 +83,13 @@ public class MessageActivity extends AppCompatActivity {
         });
         checkChatRoom();
 
+    }
+
+    /* 채팅방 배경 색상 변경 */
+    public void changeBackground(String color)
+    {
+        View messageActivity_recyclerview = findViewById(R.id.messageActivity_recyclerview);
+        messageActivity_recyclerview.setBackgroundColor(Color.parseColor(color));
     }
 
 
@@ -211,5 +219,7 @@ public class MessageActivity extends AppCompatActivity {
                 linearLayout_main = (LinearLayout) view.findViewById(R.id.messageItem_linearlayout_main);
             }
         }
+        
+
     }
 }

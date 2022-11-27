@@ -112,6 +112,7 @@
 
             <!-- 상단 버튼2 -->
             <LinearLayout
+                android:id="@+id/background_btn"
                 android:layout_width="100sp"
                 android:layout_height="75sp"
                 android:gravity="center"

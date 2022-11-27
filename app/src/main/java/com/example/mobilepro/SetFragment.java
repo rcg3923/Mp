@@ -1,6 +1,7 @@
 package com.example.mobilepro;
 
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,8 @@ public class SetFragment extends Fragment {
         TextView user_name = rootView.findViewById(R.id.text_name);
         TextView user_email = rootView.findViewById(R.id.text_email);
         TextView curr_point = rootView.findViewById(R.id.text_point);
+        View background_btn = rootView.findViewById(R.id.background_btn);
+
         databaseReference.child("UserAccount").child(firebaseUser.getUid()).child("name").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -60,6 +63,14 @@ public class SetFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        background_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity activity = (MainActivity) getActivity();
+                activity.onFragmentChanged(3);
             }
         });
         
