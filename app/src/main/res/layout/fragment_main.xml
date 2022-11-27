@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainFragment">
-    
 
-    
+
+
     <!-- 본인 프로필 -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +18,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="내 프로필" />
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
+            android:text="내 프로필"
+            android:textSize="14sp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,47 +38,60 @@
                 android:layout_marginBottom="4dp"
                 android:src="@drawable/icon_user" />
 
-            <TextView
-                android:id="@+id/tv_username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="4dp"
-                android:text="이름"
-                android:textColor="#000000"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_useremail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginLeft="26dp"
-                android:layout_marginTop="6dp"
-                android:text="이메일"
-                android:textColor="#8A252525" />
+                <TextView
+                    android:id="@+id/tv_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="4dp"
+                    android:text="이름"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_useremail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginLeft="26dp"
+                    android:layout_marginTop="3dp"
+                    android:text="이메일"
+                    android:textColor="#8A252525" />
+
+
+            </LinearLayout>
+
+
         </LinearLayout>
 
         <LinearLayout
-            android:background="@android:color/background_dark"
+            android:background="#8ABCB9B9"
             android:layout_width="match_parent"
             android:layout_height="1dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="친구 프로필" />
-
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:text="친구 프로필" />
 
     <!-- 친구 추가 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp">
 
         <EditText
             android:layout_toLeftOf="@+id/addFriend_button"
@@ -92,7 +108,8 @@
             android:layout_height="wrap_content"
             android:text="친구 추가"
             android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:backgroundTint="#1473E6"/>
     </LinearLayout>
 
 
@@ -107,72 +124,85 @@
 
     <!-- 하단바 -->
     <LinearLayout
-        android:layout_width="330sp"
-        android:layout_height="50sp"
-        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="51sp"
         android:layout_alignParentBottom="true"
-        android:background="@color/white"
-        android:layout_centerHorizontal="true"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-
-        <!-- 하단바 버튼1 -->
         <LinearLayout
-            android:layout_width="110sp"
-            android:layout_height="50sp"
-            android:gravity="center">
+            android:background="@android:color/background_dark"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
 
-            <ImageButton
-                android:id="@+id/button_main"
-                android:layout_width="50sp"
-                android:layout_height="40sp"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:background="@color/white"
-                android:src="@drawable/icon_btn_main" />
+        <LinearLayout
+            android:layout_width="330sp"
+            android:layout_height="50sp"
+            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+
+
+
+            <!-- 하단바 버튼1 -->
+            <LinearLayout
+                android:layout_width="110sp"
+                android:layout_height="50sp"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/button_main"
+                    android:layout_width="50sp"
+                    android:layout_height="40sp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:background="@color/white"
+                    android:src="@drawable/icon_btn_main2" />
+
+            </LinearLayout>
+
+
+            <!-- 하단바 버튼2 -->
+            <LinearLayout
+                android:layout_width="110sp"
+                android:layout_height="50sp"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/button_calendar"
+                    android:layout_width="35sp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:background="@color/white"
+                    android:src="@drawable/icon_btn_cal"
+                    />
+
+            </LinearLayout>
+
+
+            <!-- 하단바 버튼3 -->
+            <LinearLayout
+                android:layout_width="110sp"
+                android:layout_height="50sp"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/button_set"
+                    android:layout_width="35sp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:background="@color/white"
+                    android:src="@drawable/icon_btn_set"
+                    />
+
+            </LinearLayout>
 
         </LinearLayout>
 
 
-        <!-- 하단바 버튼2 -->
-        <LinearLayout
-            android:layout_width="110sp"
-            android:layout_height="50sp"
-            android:gravity="center">
-
-            <ImageButton
-                android:id="@+id/button_calendar"
-                android:layout_width="35sp"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:background="@color/white"
-                android:src="@drawable/icon_btn_cal"
-                />
-
-        </LinearLayout>
-
-
-        <!-- 하단바 버튼3 -->
-        <LinearLayout
-            android:layout_width="110sp"
-            android:layout_height="50sp"
-            android:gravity="center">
-
-            <ImageButton
-                android:id="@+id/button_set"
-                android:layout_width="35sp"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:background="@color/white"
-                android:src="@drawable/icon_btn_set2"
-                />
-
-        </LinearLayout>
 
     </LinearLayout>
-
 
 
 </LinearLayout>

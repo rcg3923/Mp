@@ -33,6 +33,7 @@
         android:layout_height="wrap_content"
         android:text="전송"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true"
+        android:backgroundTint="#1473E6" />
 
 </RelativeLayout>

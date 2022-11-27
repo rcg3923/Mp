@@ -79,6 +79,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 account.setName(NameTxt);
                                 account.setPoint(Point);
                                 databaseReference.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
+                                databaseReference.child("UserPoint").child(firebaseUser.getUid()).child("point").setValue(0);
 
                                 Toast.makeText(RegisterActivity.this, "회원가입 성공", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
