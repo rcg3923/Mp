@@ -165,16 +165,15 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <ImageView
+            <com.facebook.login.widget.DeviceLoginButton
+                android:id="@+id/Facebook_LoginConroller"
                 android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:src="@drawable/fb" />
+                android:layout_height="40dp" />
 
             <com.google.android.gms.common.SignInButton
                 android:id="@+id/Google_LoginController"
                 android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:src="@drawable/linkedin" />
+                android:layout_height="40dp" />
 
         </LinearLayout>
 

@@ -12,6 +12,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mobilepro.R;
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -23,6 +29,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
@@ -36,8 +43,14 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private static final int REQ_SIGN_GOOGLE = 100; // Google Login Result Code
 
 
+    // Facebook Login
+    private LoginButton btn_facebook;
+    // 페이스북 콜백 매니저
+    private CallbackManager callbackManager;
+
 
     private FirebaseAuth mFirebaseAuth; // 파이어베이스 인증
+
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://proj1-b1917-default-rtdb.firebaseio.com/");
 
 
@@ -48,6 +61,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         setContentView(R.layout.activity_login);
         // Firebase 인증 객체 초기화
         mFirebaseAuth = FirebaseAuth.getInstance();
+        // Facebook 콜백 등록
+        callbackManager = CallbackManager.Factory.create();
 
         // xml 파일에서 입력된 값을 자바에서 사용하기 위해 가져오는 과정
         EditText UserName = findViewById(R.id.Username_Input);
@@ -56,6 +71,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         TextView RegisterBtn = findViewById(R.id.register_text);
         // Google 로그인 버튼
         btn_google = findViewById(R.id.Google_LoginController);
+        // Facebook 로그인 버튼
+        btn_facebook = findViewById(R.id.Facebook_LoginConroller);
+        btn_facebook.setReadPermissions("eamil", "public_profile");
+
 
         //Google Login
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -67,6 +86,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, googleSignInOptions)
                 .build();
+
         // 구글 로그인 버튼을 클릭 했을 때 로직
         btn_google.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +97,25 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 startActivityForResult(intent, REQ_SIGN_GOOGLE);
             }
         });
+
+        // 페이스북 로그인 버튼을 클릭 했을 때 로직
+        btn_facebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                handleFacebookAccessToken(loginResult.getAccessToken());
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(@NonNull FacebookException e) {
+
+            }
+        });
+
 
         // 로그인 버튼을 눌럿을때 동작하는 로직
         LoginBtn.setOnClickListener(new View.OnClickListener() {
@@ -130,7 +169,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
         super.onActivityResult(requestCode, resultCode, data);
-
+        // 페이스북 콜백 등록
+        callbackManager.onActivityResult(requestCode, resultCode, data);
         if(requestCode == REQ_SIGN_GOOGLE){
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if(result.isSuccess()){
@@ -170,5 +210,31 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+
+    // Facebook 로그인 이벤트
+    // 사용자가 정상적으로 로그인한 후 페이스북 로그인 버튼의 onSuccess 콜백 메소드에서 로그인한 사용자의
+    // 액세스 토큰을 가져와서 Firebase 사용자 인증 정보로 교환하고,
+    // Firebase 사용자 인증 정보를 사용해 Firebase에 인증.
+
+    private void handleFacebookAccessToken(AccessToken token){
+
+        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        mFirebaseAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            // 로그인 성공
+                            Toast.makeText(LoginActivity.this, "Success_Login", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), com.example.mobilepro.MainActivity.class);
+                        }
+                        else {
+                            // 로그인 실패
+                            Toast.makeText(LoginActivity.this, "Failed_Login", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
 }
 
