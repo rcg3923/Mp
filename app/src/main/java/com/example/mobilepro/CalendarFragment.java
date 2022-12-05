@@ -10,15 +10,9 @@ import android.widget.ImageButton;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.mobilepro.MainActivity;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.ContentValues;
-import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.TextView;
