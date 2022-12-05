@@ -1,6 +1,7 @@
 package com.example.mobilepro;
 
 import android.accessibilityservice.AccessibilityService;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -14,8 +15,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mobilepro.Account.LoginActivity;
 
+import java.io.FileOutputStream;
+
 
 public class BackgroundChange extends AppCompatActivity {
+    public String fname = "BackgroundSetting.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +41,8 @@ public class BackgroundChange extends AppCompatActivity {
         colorLightBlue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MessageActivity.color = "#5858FA";
+                // MessageActivity.color = "#5858FA";
+                saveBackground("#5858FA");
                 Toast.makeText(getApplicationContext(), "설정 완료",Toast.LENGTH_LONG).show();
             }
         });
@@ -45,7 +50,8 @@ public class BackgroundChange extends AppCompatActivity {
         colorWhite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MessageActivity.color = "#ffffff";
+                // MessageActivity.color = "#ffffff";
+                saveBackground("#ffffff");
                 Toast.makeText(getApplicationContext(), "설정 완료",Toast.LENGTH_LONG).show();
             }
         });
@@ -53,7 +59,8 @@ public class BackgroundChange extends AppCompatActivity {
         colorBlack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MessageActivity.color = "#000000";
+                // MessageActivity.color = "#000000";
+                saveBackground("#000000");
                 Toast.makeText(getApplicationContext(), "설정 완료",Toast.LENGTH_LONG).show();
             }
         });
@@ -62,7 +69,8 @@ public class BackgroundChange extends AppCompatActivity {
         colorMint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MessageActivity.color = "#81F7F3";
+                // MessageActivity.color = "#81F7F3";
+                saveBackground("#81F7F3");
                 Toast.makeText(getApplicationContext(), "설정 완료",Toast.LENGTH_LONG).show();
             }
         });
@@ -70,7 +78,8 @@ public class BackgroundChange extends AppCompatActivity {
         colorLightYellow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MessageActivity.color = "#F2F5A9";
+                // MessageActivity.color = "#F2F5A9";
+                saveBackground("#F2F5A9");
                 Toast.makeText(getApplicationContext(), "설정 완료",Toast.LENGTH_LONG).show();
             }
         });
@@ -78,7 +87,8 @@ public class BackgroundChange extends AppCompatActivity {
         colorLightPurple.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MessageActivity.color = "#BE81F7";
+                // MessageActivity.color = "#BE81F7";
+                saveBackground("#BE81F7");
                 Toast.makeText(getApplicationContext(), "설정 완료",Toast.LENGTH_LONG).show();
             }
         });
@@ -86,7 +96,8 @@ public class BackgroundChange extends AppCompatActivity {
         colorLightRed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MessageActivity.color = "#F78181";
+                // MessageActivity.color = "#F78181";
+                saveBackground("#F78181");
                 Toast.makeText(getApplicationContext(), "설정 완료",Toast.LENGTH_LONG).show();
             }
         });
@@ -94,10 +105,25 @@ public class BackgroundChange extends AppCompatActivity {
         colorLightGreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MessageActivity.color = "#A9F5A9";
+                // MessageActivity.color = "#A9F5A9";
+                saveBackground("#A9F5A9");
                 Toast.makeText(getApplicationContext(), "설정 완료",Toast.LENGTH_LONG).show();
             }
         });
 
+    }
+
+    @SuppressLint("WrongConstant")
+    public void saveBackground(String color){
+        FileOutputStream fos = null;
+
+        try{
+            fos = openFileOutput(fname, Context.MODE_NO_LOCALIZED_COLLATORS);
+            String content = color;
+            fos.write((content).getBytes());
+            fos.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

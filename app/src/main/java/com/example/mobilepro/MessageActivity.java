@@ -26,6 +26,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +52,7 @@ public class MessageActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.messageActivity_button);
         editText = (EditText) findViewById(R.id.messageActivity_editText);
 
+        checkColor();
         recyclerView = (RecyclerView) findViewById(R.id.messageActivity_recyclerview);
         recyclerView.setBackgroundColor(Color.parseColor(color));
 
@@ -86,6 +88,26 @@ public class MessageActivity extends AppCompatActivity {
         });
         checkChatRoom();
 
+    }
+
+    private void checkColor() {
+
+        String fname = "BackgroundSetting.txt";
+        FileInputStream fis = null;
+
+        try{
+            fis = openFileInput(fname);
+
+            byte[] fileData=new byte[fis.available()];
+            fis.read(fileData);
+            fis.close();
+
+            color = new String(fileData);
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     // 채팅룸 중복체크 함수
@@ -214,7 +236,7 @@ public class MessageActivity extends AppCompatActivity {
                 linearLayout_main = (LinearLayout) view.findViewById(R.id.messageItem_linearlayout_main);
             }
         }
-        
-
     }
+
+
 }
