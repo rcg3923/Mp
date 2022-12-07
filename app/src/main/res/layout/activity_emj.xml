@@ -12,10 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="이모티콘 상점"
+        android:text="Emoticon Shop"
+        android:fontFamily="@font/pacifico_regular"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"/>
+        android:textColor="#0081cc"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/emj_main"
