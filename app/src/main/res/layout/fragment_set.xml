@@ -56,11 +56,12 @@
         <TextView
             android:layout_width="350sp"
             android:layout_height="50sp"
-            android:paddingTop="25sp"
+            android:background="@drawable/icon_point_top"
             android:paddingLeft="20sp"
+            android:paddingTop="25sp"
             android:text="나의 포인트"
-            android:textColor="@color/white"
-            android:background="@drawable/icon_point_top"/>
+            android:textColor="@color/white" />
+
         <TextView
             android:id="@+id/text_point"
             android:layout_width="350sp"
@@ -329,5 +330,16 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="61dp"
+        android:backgroundTint="@color/com_facebook_blue"
+        android:text="LOGOUT" />
 
 </RelativeLayout>

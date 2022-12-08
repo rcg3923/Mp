@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.mobilepro.Account.LoginActivity;
 import com.example.mobilepro.R;
 import com.example.mobilepro.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -109,8 +110,15 @@ public class SetFragment extends Fragment {
             }
         });
 
-
-
+        Button logout = rootView.findViewById(R.id.btn_logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return rootView;
     }
