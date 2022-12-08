@@ -25,12 +25,16 @@ import com.google.firebase.database.ValueEventListener;
 
 public class SetFragment extends Fragment {
 
+    private ImageButton imageButton;
+
     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_set, container, false);
+
+        imageButton = rootView.findViewById(R.id.img_button);
 
 
 
@@ -94,6 +98,14 @@ public class SetFragment extends Fragment {
             public void onClick(View view) {
                 MainActivity activity = (MainActivity) getActivity();
                 activity.onFragmentChanged(1);
+            }
+        });
+
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), EmjActivity.class);
+                startActivity(intent);
             }
         });
 
