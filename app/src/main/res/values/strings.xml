@@ -3,4 +3,19 @@
     <string name="facebook_app_id">2995543670747034</string>
     <string name="fb_login_protocol_scheme">fb1234</string>
     <string name="facebook_client_token">9b91a8a5c5f21dfc054d04322b1e1aa7</string>
+
+    <string name="emj_01">박나나</string>
+    <string name="emj_01_describe">아자!</string>
+
+    <string name="emj_02">클리어,페일</string>
+    <string name="emj_02_describe">달콤한 사랑을!</string>
+
+    <string name="emj_03">FallingInLove</string>
+    <string name="emj_03_describe">넌 내꺼야!</string>
+
+    <string name="emj_04">뫄뫄</string>
+    <string name="emj_04_describe">헿</string>
+
+    <string name="emj_05">탬탬버린</string>
+    <string name="emj_05_describe">메롱</string>
 </resources>
