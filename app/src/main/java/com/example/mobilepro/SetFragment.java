@@ -2,15 +2,20 @@ package com.example.mobilepro;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.mobilepro.Account.LoginActivity;
+import com.example.mobilepro.R;
+import com.example.mobilepro.MainActivity;
 import com.example.mobilepro.recyclerview.EmjActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -55,6 +60,19 @@ public class SetFragment extends Fragment {
 
         user_email.setText(firebaseUser.getEmail());
 
+        databaseReference.child("UserPoint").child(firebaseUser.getUid()).child("point").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int value = dataSnapshot.getValue(int.class);
+                curr_point.setText(value + "포인트");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         background_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,8 +111,15 @@ public class SetFragment extends Fragment {
             }
         });
 
-
-
+        Button logout = rootView.findViewById(R.id.btn_logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return rootView;
     }
