@@ -60,19 +60,6 @@ public class SetFragment extends Fragment {
 
         user_email.setText(firebaseUser.getEmail());
 
-        databaseReference.child("UserPoint").child(firebaseUser.getUid()).child("point").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                int value = dataSnapshot.getValue(int.class);
-                curr_point.setText(value + "포인트");
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
         background_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
